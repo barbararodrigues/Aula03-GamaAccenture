@@ -25,15 +25,13 @@
 
     </div>
 
-    
-
-    
+  
 
     <script>
         const app = document.querySelector("#app");
             app.innerHTML = `
-            <div class="container">
-        <h1>Formulário</h1>
+        <div class="container">
+        <h1 class="text-center">Formulário </h1>
         <div class="card">
             <div class="card-body">
                 <div class="mb-3">
@@ -61,29 +59,75 @@
                     <input type="text" class="form-control" placeholder="Cidade" id="city">
                 </div>
 
-                <button type="submit" onclick="SecondScreen()" class="btn btn-primary">Enviar</button>
+                <button type="submit" onclick="Click()" class="btn btn-primary">Enviar</button>
             </div>
         </div>
     </div>`;
   
 
-        
-        function SecondScreen() {
-            let userName = this.document.getElementById('name').value;
-            let userAge = this.document.getElementById('age').value;
-            let userJob = this.document.getElementById('job').value;
-            let userAdress = this.document.getElementById('adress').value;
-            let userState = this.document.getElementById('state').value;
-            let userCity = this.document.getElementById('city').value;
-            app.innerHTML = `
-            <div class="container">
-                <div class="card">
+    function LoadContent() {
+        app.innerHTML = `<div class="text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            </div>`;
+      }
+
+
+      function SecondScreen() {
+        app.innerHTML = `
+            <div class="container text-center">
+                <div class="card">  
+                    <h5 class="card-title">Dados</h5>
                     <div class="card-body">
-                        <h1>Olá ${userName}, você tem ${userAge} anos. Mora em ${userAdress} na cidade ${userAge} no estado ${userState}.
-                            E trabalha com ${userJob}</h1>
+                        <div>
+                        <p> Nome: 
+                            ${this.userName}
+                            
+                        </p>
+                        <p> Idade: 
+                            ${this.userAge}
+                            
+                        </p>
+                        <p> Profissão: 
+                            ${this.userJob}
+                            
+                        </p>
+                        <p> Endereço: 
+                            ${this.userAdress}
+                            
+                        </p>
+                        <p> Estado: 
+                            ${this.userState}
+                            
+                        </p>
+                        <p> Cidade: 
+                            ${this.userCity}
+                            
+                        </p>
                     </div>
+                        
                 </div>
-             <div>`;
+            </div>
+             `;
+      }
+
+        
+        function Click() {
+            this.userName = this.document.getElementById('name').value;
+            this.userAge = this.document.getElementById('age').value;
+            this.userJob = this.document.getElementById('job').value;
+            this.userAdress = this.document.getElementById('adress').value;
+            this.userState = this.document.getElementById('state').value;
+            this.userCity = this.document.getElementById('city').value;
+
+
+
+            LoadContent();
+            setTimeout(() => {
+                SecondScreen();
+            }, 1500);
+            
         }
     </script>
 </body>
