@@ -25,38 +25,62 @@
 
     </div>
 
+    
+
+    
 
     <script>
         const app = document.querySelector("#app");
             app.innerHTML = `
             <div class="container">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Nome</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" id="name">
-                            </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Idade </label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" id="age">
-                        </div>
-                        <button type="submit" onclick="SecondScreen()" class="btn btn-primary">Enviar</button>
-                    </div>
+        <h1>Formulário</h1>
+        <div class="card">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nome</label>
+                    <input type="text" class="form-control"  placeholder="Nome" id="name">
                 </div>
-            </div>`;
+                <div class="mb-3">
+                    <label for="age" class="form-label">Idade </label>
+                    <input type="number" class="form-control" placeholder="Idade" id="age">
+                </div>
+                <div class="mb-3">
+                    <label for="job" class="form-label">Profissão </label>
+                    <input type="text" class="form-control" placeholder="Profissão" id="job">
+                </div>
+                <div class="mb-3">
+                    <label for="adress" class="form-label">Endereço </label>
+                    <input type="text" class="form-control" placeholder="Endereço" id="adress">
+                </div>
+                <div class="mb-3">
+                    <label for="state class="form-label">Estado </label>
+                    <input type="text" class="form-control" placeholder="Estado" id="state">
+                </div>
+                <div class="mb-3">
+                    <label for="city" class="form-label">Cidade </label>
+                    <input type="text" class="form-control" placeholder="Cidade" id="city">
+                </div>
+
+                <button type="submit" onclick="SecondScreen()" class="btn btn-primary">Enviar</button>
+            </div>
+        </div>
+    </div>`;
   
 
-            
         
         function SecondScreen() {
-            const userName = this.document.getElementById('#name').value;
-            const ageUser = this.docuemnt.getElementById("#age").value;
+            let userName = this.document.getElementById('name').value;
+            let userAge = this.document.getElementById('age').value;
+            let userJob = this.document.getElementById('job').value;
+            let userAdress = this.document.getElementById('adress').value;
+            let userState = this.document.getElementById('state').value;
+            let userCity = this.document.getElementById('city').value;
             app.innerHTML = `
             <div class="container">
                 <div class="card">
                     <div class="card-body">
-                        <h1>O seu nome é ${userName} e você tem ${ageUser} anos. </h1>
-                        <h2>Seja bem vindo</h2>
+                        <h1>Olá ${userName}, você tem ${userAge} anos. Mora em ${userAdress} na cidade ${userAge} no estado ${userState}.
+                            E trabalha com ${userJob}</h1>
                     </div>
                 </div>
              <div>`;
