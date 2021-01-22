@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +19,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
         integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
         crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -62,58 +65,47 @@
                 <button type="submit" onclick="Click()" class="btn btn-primary">Enviar</button>
             </div>
         </div>
-    </div>
-    `;
+    </div>`;
+  
 
-        
-
-        
-        function Click() {
-            let userName = document.getElementById('name').value;
-            let userAge = document.getElementById('age').value;
-            let userJob = document.getElementById('job').value;
-            let userAdress = document.getElementById('adress').value;
-            let userState = document.getElementById('state').value;
-            let userCity = document.getElementById('city').value;
-            
-
-
-            app.innerHTML = `<div class="text-center">
+    function LoadContent() {
+        app.innerHTML = `<div class="text-center">
                             <div class="spinner-border" role="status">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                             </div>`;
+      }
 
 
-            setTimeout(() => {
-                app.innerHTML = `
+      function SecondScreen() {
+        app.innerHTML = `
             <div class="container text-center">
                 <div class="card">  
                     <h5 class="card-title">Dados</h5>
                     <div class="card-body">
                         <div>
                         <p> Nome: 
-                            ${userName}
+                            ${this.userName}
                             
                         </p>
                         <p> Idade: 
-                            ${userAge}
+                            ${this.userAge}
                             
                         </p>
                         <p> Profissão: 
-                            ${userJob}
+                            ${this.userJob}
                             
                         </p>
                         <p> Endereço: 
-                            ${userAdress}
+                            ${this.userAdress}
                             
                         </p>
                         <p> Estado: 
-                            ${userState}
+                            ${this.userState}
                             
                         </p>
                         <p> Cidade: 
-                            ${userCity}
+                            ${this.userCity}
                             
                         </p>
                     </div>
@@ -121,8 +113,47 @@
                 </div>
             </div>
              `;
-      
-            }, 1500);
+      }
+
+        
+        function Click() {
+            this.userName = this.document.getElementById('name').value;
+            this.userAge = this.document.getElementById('age').value;
+            this.userJob = this.document.getElementById('job').value;
+            this.userAdress = this.document.getElementById('adress').value;
+            this.userState = this.document.getElementById('state').value;
+            this.userCity = this.document.getElementById('city').value;
+
+
+
+            LoadContent();
+
+            const URL = 'https://webhook.site/a004ba84-e5d6-4971-8757-65cc060c38bd';
+            const Body = {
+                userName: this.userName,
+                userAge: this.userAge,
+                userJob: this.userJob,
+                userAdress: this.userAdress,
+                userState: this.userState,
+                userCity: this.userCity
+
+            }
+
+            axios.post(URL, Body).then(
+                res => {
+                    console.log('Retorno de dados', res.data.message);
+                    console.log('Retorno de dados', res.status);
+
+                    let FirstName = this.userName.split(' ');
+                    console.log(FirstName);
+
+                    let Content =  SecondScreen();
+                }
+            )
+
+            // setTimeout(() => {
+               
+            // }, 1500);
             
         }
     </script>
